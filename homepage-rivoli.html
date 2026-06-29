@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASD Don Bosco Rivoli — Sport per Tutti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --oro: #F6B810;
+      --oro-dark: #d49a0e;
+      --rosso: #FA0000;
+      --rosso-dark: #cc0000;
+      --blu: #0049f8;
+      --blu-dark: #0038cc;
+      --nero: #07090f;
+      --nero2: #0d1020;
+      --nero3: #141828;
+      --grigio: #252a3a;
+      --grigio-light: #8892aa;
+      --bianco: #ffffff;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--nero);
+      color: var(--bianco);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 70px;
+      background: rgba(7,9,15,0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(246,184,16,0.12);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-logo img {
+      height: 50px;
+      width: auto;
+      filter: drop-shadow(0 1px 6px rgba(0,0,0,0.7));
+    }
+
+    .nav-logo-text { display: flex; flex-direction: column; }
+
+    .nav-logo-text span:first-child {
+      font-family: var(--font-display);
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: var(--oro);
+      line-height: 1;
+    }
+
+    .nav-logo-text span:last-child {
+      font-size: 10px;
+      color: var(--grigio-light);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .nav-links a:hover { color: var(--oro); }
+
+    .nav-links a.disabled {
+      color: rgba(255,255,255,0.3);
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .nav-cta {
+      background: var(--rosso) !important;
+      color: white !important;
+      padding: 9px 20px;
+      border-radius: 3px;
+      font-weight: 700 !important;
+    }
+
+    .nav-cta:hover { background: var(--rosso-dark) !important; color: white !important; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      width: 24px; height: 2px;
+      background: var(--bianco);
+      display: block;
+      transition: all 0.3s;
+    }
+
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: rgba(7,9,15,0.98);
+      z-index: 99;
+      padding: 20px 40px 28px;
+      border-bottom: 2px solid var(--oro);
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-drawer a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+
+    .nav-drawer a:hover { color: var(--oro); }
+    .nav-drawer a.disabled { color: rgba(255,255,255,0.25); pointer-events: none; }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      display: inline-block;
+      background: var(--rosso);
+      color: white;
+      text-decoration: none;
+      padding: 15px 36px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary:hover { background: var(--rosso-dark); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: white;
+      text-decoration: none;
+      padding: 15px 36px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      cursor: pointer;
+      background: none;
+    }
+
+    .btn-outline:hover { border-color: var(--oro); color: var(--oro); transform: translateY(-2px); }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { padding: 90px 40px; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 52px);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--bianco);
+    }
+
+    .section-link {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--oro);
+      text-decoration: none;
+      border-bottom: 1px solid var(--oro);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .section-link:hover { color: var(--rosso); border-color: var(--rosso); }
+
+    .max-w { max-width: 1280px; margin: 0 auto; }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero.png');
+      background-size: cover;
+      background-position: center 40%;
+      filter: brightness(0.28);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(246,184,16,0.05) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(7,9,15,0.2) 0%, rgba(7,9,15,0.75) 100%);
+    }
+
+    .hero-stripe {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--blu) 0%, var(--oro) 50%, var(--rosso) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 28px;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.8));
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--oro);
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(58px, 11vw, 140px);
+      line-height: 0.88;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--bianco);
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      display: block;
+      color: var(--oro);
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(14px, 2vw, 26px);
+      letter-spacing: 10px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 52px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.3);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px; height: 40px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── BANNER ─── */
+    #banner {
+      background: var(--oro);
+      padding: 28px 40px;
+    }
+
+    .banner-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .banner-text {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 46px);
+      letter-spacing: 2px;
+      color: var(--nero);
+    }
+
+    .banner-sub {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(7,9,15,0.6);
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .banner-btn {
+      background: var(--nero);
+      color: var(--oro);
+      text-decoration: none;
+      padding: 13px 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .banner-btn:hover { opacity: 0.82; }
+
+    /* ─── I NOSTRI SPORT ─── */
+    #sport { background: var(--nero2); }
+
+    .sport-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+
+    .sport-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 5/4;
+      cursor: pointer;
+      display: block;
+    }
+
+    .sport-card.disabled { cursor: default; }
+
+    .sport-card-bg {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.4) saturate(0.6);
+      transition: filter 0.45s, transform 0.5s;
+    }
+
+    .sport-card:not(.disabled):hover .sport-card-bg {
+      filter: brightness(0.58) saturate(1);
+      transform: scale(1.06);
+    }
+
+    .sport-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 25%, rgba(0,0,0,0.9) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 32px;
+    }
+
+    .sport-icon-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .sport-name {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.5vw, 44px);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--bianco);
+      line-height: 1;
+    }
+
+    .sport-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .sport-arrow {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .sport-card:not(.disabled):hover .sport-arrow { opacity: 1; transform: translateY(0); }
+
+    .sport-badge {
+      position: absolute;
+      top: 14px; right: 14px;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.4);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 2px;
+    }
+
+    /* Sport accent colors */
+    .s-calcio .sport-icon-label { color: var(--rosso); }
+    .s-calcio .sport-arrow      { color: var(--rosso); }
+    .s-judo .sport-icon-label   { color: var(--oro); }
+    .s-judo .sport-arrow        { color: var(--oro); }
+    .s-gin .sport-icon-label    { color: var(--blu); }
+    .s-gin .sport-arrow         { color: var(--blu); }
+    .s-dis .sport-icon-label    { color: rgba(255,255,255,0.35); }
+    .s-basket .sport-icon-label, .s-basket .sport-arrow { color: #ff7700; }
+    .s-danza  .sport-icon-label, .s-danza  .sport-arrow { color: #cc3399; }
+    .s-volley .sport-icon-label, .s-volley .sport-arrow { color: #0088cc; }
+
+    /* ─── CHI SIAMO ─── */
+    #chi-siamo { background: var(--nero); }
+
+    .chi-siamo-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .chi-siamo-img-wrap {
+      position: relative;
+    }
+
+    .chi-siamo-img-wrap img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+
+    .chi-siamo-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -14px; left: -14px;
+      width: 55%; height: 55%;
+      border: 2px solid var(--oro);
+      border-right: none;
+      border-bottom: none;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .chi-siamo-text h2.section-title { margin-bottom: 8px; }
+
+    .chi-siamo-text h3 {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.5vw, 44px);
+      color: var(--bianco);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    .chi-siamo-text h3 span { color: var(--oro); display: block; }
+
+    .chi-siamo-text p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+    }
+
+    .stat-item {
+      border-left: 3px solid var(--oro);
+      padding-left: 18px;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 46px;
+      color: var(--oro);
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    /* ─── VALORI ─── */
+    #valori { background: var(--nero2); padding: 72px 40px; }
+
+    .valori-strip {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .valore-item {
+      padding: 40px 28px;
+      border-right: 1px solid rgba(255,255,255,0.07);
+      text-align: center;
+    }
+
+    .valore-item:last-child { border-right: none; }
+
+    .valore-icon {
+      font-size: 40px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .valore-title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--oro);
+      margin-bottom: 10px;
+    }
+
+    .valore-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+
+    /* ─── PARTNER ─── */
+    #partner { background: var(--nero3); }
+
+    .partner-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .partner-header p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 14px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .partner-quote {
+      font-style: italic;
+      font-size: 13px;
+      color: rgba(246,184,16,0.6);
+      margin-top: 12px !important;
+    }
+
+    .partner-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .partner-card {
+      background: var(--nero2);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.25s, background 0.25s;
+      min-width: 170px;
+      flex: 1;
+    }
+
+    .partner-card:hover {
+      background: rgba(246,184,16,0.05);
+      border-color: rgba(246,184,16,0.28);
+    }
+
+    .partner-card img {
+      max-height: 54px;
+      max-width: 150px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(1) brightness(0.65);
+      transition: filter 0.3s;
+    }
+
+    .partner-card:hover img { filter: grayscale(0) brightness(1); }
+
+    /* ─── CONTATTI ─── */
+    #contatti {
+      background: var(--oro);
+      padding: 90px 40px;
+    }
+
+    .contatti-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contatti-left .section-title { color: var(--nero); margin-bottom: 14px; }
+
+    .contatti-left > p {
+      font-size: 15px;
+      color: rgba(7,9,15,0.6);
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .contatto-list { display: flex; flex-direction: column; gap: 20px; }
+
+    .contatto-item { display: flex; align-items: center; gap: 16px; }
+
+    .contatto-icon {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: rgba(7,9,15,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contatto-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--nero);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .contatto-text {
+      font-size: 14px;
+      color: rgba(7,9,15,0.75);
+      line-height: 1.5;
+    }
+
+    .contatto-text strong {
+      display: block;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--nero);
+      margin-bottom: 2px;
+    }
+
+    .contatti-right { display: flex; flex-direction: column; gap: 24px; }
+
+    .contatti-social-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--nero);
+    }
+
+    .social-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: var(--nero);
+      color: var(--oro);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 3px;
+      transition: opacity 0.2s;
+    }
+
+    .social-btn:hover { opacity: 0.82; }
+
+    .social-btn svg {
+      width: 18px; height: 18px;
+      fill: var(--oro);
+      flex-shrink: 0;
+    }
+
+    .contatti-info-box {
+      background: rgba(7,9,15,0.1);
+      border-radius: 4px;
+      padding: 22px 26px;
+    }
+
+    .contatti-info-box p {
+      font-size: 14px;
+      color: rgba(7,9,15,0.7);
+      line-height: 1.7;
+    }
+
+    .contatti-info-box strong { color: var(--nero); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--nero);
+      border-top: 1px solid rgba(246,184,16,0.12);
+      padding: 40px 40px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand { display: flex; align-items: center; gap: 14px; }
+
+    .footer-brand img {
+      height: 44px;
+      width: auto;
+      opacity: 0.82;
+    }
+
+    .footer-brand-text {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--oro);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.5px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .footer-tagline {
+      font-family: var(--font-display);
+      font-size: 26px;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,0.1);
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════
+       SPORT INTERNAL PAGES
+    ══════════════════════════════════ */
+    .sport-hero {
+      position: relative;
+      height: 58vh;
+      min-height: 400px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .sport-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.3);
+    }
+
+    .sport-hero-grad {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 25%, #07090f 100%);
+    }
+
+    .sport-hero-top-stripe {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+
+    .sport-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 40px 60px;
+      width: 100%;
+    }
+
+    .sport-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      margin-bottom: 22px;
+      transition: color 0.2s;
+      background: none;
+      border: none;
+    }
+
+    .sport-back-btn:hover { color: var(--oro); }
+
+    .sport-hero-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .sport-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 9vw, 110px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--bianco);
+      line-height: 0.93;
+    }
+
+    .sport-hero-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 16px;
+      max-width: 500px;
+    }
+
+    /* Sport page sections */
+    .sp-section { padding: 72px 40px; }
+    .sp-section.alt { background: var(--nero2); }
+
+    .sp-inner { max-width: 1280px; margin: 0 auto; }
+
+    .sp-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--bianco);
+      margin-bottom: 40px;
+    }
+
+    .squad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 3px;
+    }
+
+    .squad-card {
+      background: var(--nero3);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 30px 26px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .squad-card:hover {
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(246,184,16,0.25);
+    }
+
+    .squad-num {
+      font-family: var(--font-display);
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .squad-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--bianco);
+      margin-bottom: 8px;
+    }
+
+    .squad-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.42);
+      line-height: 1.6;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .info-card {
+      background: var(--nero3);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 30px;
+      border-radius: 2px;
+    }
+
+    .info-icon {
+      font-size: 30px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .info-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--bianco);
+      margin-bottom: 10px;
+    }
+
+    .info-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.7;
+    }
+
+    .sp-cta {
+      text-align: center;
+      padding: 80px 40px;
+    }
+
+    .sp-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 58px);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .sp-cta p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── ANIMATE ON SCROLL ─── */
+    .anim {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .anim.visible { opacity: 1; transform: translateY(0); }
+    .anim-d1 { transition-delay: 0.1s; }
+    .anim-d2 { transition-delay: 0.2s; }
+    .anim-d3 { transition-delay: 0.3s; }
+    .anim-d4 { transition-delay: 0.4s; }
+    .anim-d5 { transition-delay: 0.5s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      section, .sp-section, .sp-cta { padding: 60px 20px; }
+      #banner { padding: 22px 20px; }
+      .banner-inner { flex-direction: column; gap: 14px; }
+      .sport-grid { grid-template-columns: repeat(2, 1fr); }
+      .chi-siamo-inner { grid-template-columns: 1fr; gap: 36px; }
+      .chi-siamo-img-wrap { display: none; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .valori-strip { grid-template-columns: repeat(2, 1fr); }
+      .valore-item:nth-child(even) { border-right: none; }
+      .valore-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .contatti-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .sport-hero-content { padding: 0 20px 44px; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .sport-grid { grid-template-columns: 1fr; }
+      .valori-strip { grid-template-columns: 1fr; }
+      .valore-item { border-right: none; }
+      .squad-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .footer-tagline { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav id="mainNav">
+    <a class="nav-logo" onclick="showPage('home')">
+      <img src="logo-sito.png" alt="ASD Don Bosco Rivoli">
+      <div class="nav-logo-text">
+        <span>Don Bosco Rivoli</span>
+        <span>Rivoli · Torino</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a onclick="showPage('home')">Home</a></li>
+      <li><a onclick="showPage('calcio')">Calcio</a></li>
+      <li><a onclick="showPage('judo')">Judo</a></li>
+      <li><a onclick="showPage('basket')">Basket</a></li>
+      <li><a onclick="showPage('danza')">Danza</a></li>
+      <li><a onclick="showPage('volley')">Volley</a></li>
+      <li><a onclick="showPage('ginnastica')">Ginnastica</a></li>
+      <li><a class="nav-cta" onclick="showPage('home'); scrollToContatti()">Contatti</a></li>
+    </ul>
+    <div class="nav-hamburger" onclick="toggleDrawer()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <div class="nav-drawer" id="drawer">
+    <a onclick="showPage('home'); toggleDrawer()">Home</a>
+    <a onclick="showPage('calcio'); toggleDrawer()">Calcio</a>
+    <a onclick="showPage('judo'); toggleDrawer()">Judo</a>
+    <a onclick="showPage('basket'); toggleDrawer()">Basket</a>
+    <a onclick="showPage('danza'); toggleDrawer()">Danza</a>
+    <a onclick="showPage('volley'); toggleDrawer()">Volley</a>
+    <a onclick="showPage('ginnastica'); toggleDrawer()">Ginnastica</a>
+    <a onclick="showPage('home'); scrollToContatti(); toggleDrawer()">Contatti</a>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       HOME
+  ══════════════════════════════════════════ -->
+  <div id="page-home" class="page-section">
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-stripe"></div>
+      <div class="hero-content">
+        <img src="logo-sito.png" alt="ASD Don Bosco Rivoli" class="hero-logo">
+        <p class="hero-eyebrow">Associazione Sportiva Dilettantistica</p>
+        <h1 class="hero-title">
+          Don Bosco
+          <span>Rivoli</span>
+        </h1>
+        <p class="hero-subtitle">Sport · Passione · Comunità</p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('sport').scrollIntoView({behavior:'smooth'})">I Nostri Sport</button>
+          <button class="btn-outline" onclick="scrollToContatti()">Contattaci</button>
+        </div>
+      </div>
+      <div class="hero-scroll">Scopri</div>
+    </section>
+
+    <!-- BANNER -->
+    <div id="banner">
+      <div class="banner-inner">
+        <div>
+          <div class="banner-text">6 Discipline Sportive</div>
+          <div class="banner-sub">Calcio · Judo · Basket · Danza · Volley · Ginnastica</div>
+        </div>
+        <button class="banner-btn" onclick="document.getElementById('sport').scrollIntoView({behavior:'smooth'})">Scopri di Più</button>
+      </div>
+    </div>
+
+    <!-- I NOSTRI SPORT -->
+    <section id="sport">
+      <div class="max-w">
+        <div class="section-header anim">
+          <h2 class="section-title">I Nostri Sport</h2>
+          <span class="section-link" onclick="scrollToContatti()">Iscriviti →</span>
+        </div>
+      </div>
+      <div class="sport-grid">
+
+        <div class="sport-card s-calcio anim anim-d1" onclick="showPage('calcio')">
+          <img src="calcio.jpeg" alt="Calcio" class="sport-card-bg">
+          <div class="sport-card-overlay">
+            <span class="sport-icon-label">⚽ &nbsp;Sezione Sportiva</span>
+            <div class="sport-name">Calcio</div>
+            <div class="sport-desc">Prima Squadra · Settore Giovanile · Scuola Calcio</div>
+            <span class="sport-arrow">Scopri →</span>
+          </div>
+        </div>
+
+        <div class="sport-card s-judo anim anim-d2" onclick="showPage('judo')">
+          <img src="judo.jpg" alt="Judo" class="sport-card-bg">
+          <div class="sport-card-overlay">
+            <span class="sport-icon-label">🥋 &nbsp;Sezione Sportiva</span>
+            <div class="sport-name">Judo</div>
+            <div class="sport-desc">Bambini, Ragazzi, Junior e Senior — tutte le fasce d'età</div>
+            <span class="sport-arrow">Scopri →</span>
+          </div>
+        </div>
+
+        <div class="sport-card s-basket anim anim-d3" onclick="showPage('basket')">
+          <img src="basket.jpg" alt="Basket" class="sport-card-bg">
+          <div class="sport-card-overlay">
+            <span class="sport-icon-label">🏀 &nbsp;Sezione Sportiva</span>
+            <div class="sport-name">Basket</div>
+            <div class="sport-desc">Mini Basket · Settore giovanile</div>
+            <span class="sport-arrow">Scopri →</span>
+          </div>
+        </div>
+
+        <div class="sport-card s-danza anim anim-d1" onclick="showPage('danza')">
+          <img src="danza.jpg" alt="Danza" class="sport-card-bg">
+          <div class="sport-card-overlay">
+            <span class="sport-icon-label">💃 &nbsp;Sezione Sportiva</span>
+            <div class="sport-name">Danza</div>
+            <div class="sport-desc">Corsi per tutte le età — espressione e ritmo</div>
+            <span class="sport-arrow">Scopri →</span>
+          </div>
+        </div>
+
+        <div class="sport-card s-volley anim anim-d2" onclick="showPage('volley')">
+          <img src="volley.jpg" alt="Volley" class="sport-card-bg">
+          <div class="sport-card-overlay">
+            <span class="sport-icon-label">🏐 &nbsp;Sezione Sportiva</span>
+            <div class="sport-name">Volley</div>
+            <div class="sport-desc">Mini Volley · Under · Squadre competitive</div>
+            <span class="sport-arrow">Scopri →</span>
+          </div>
+        </div>
+
+        <div class="sport-card s-gin anim anim-d3" onclick="showPage('ginnastica')">
+          <img src="ginastica.jpg" alt="Ginnastica" class="sport-card-bg">
+          <div class="sport-card-overlay">
+            <span class="sport-icon-label">🤸 &nbsp;Sezione Sportiva</span>
+            <div class="sport-name">Ginnastica</div>
+            <div class="sport-desc">Artistica · Ritmica · Generale</div>
+            <span class="sport-arrow">Scopri →</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CHI SIAMO -->
+    <section id="chi-siamo">
+      <div class="chi-siamo-inner">
+        <div class="chi-siamo-img-wrap anim">
+          <img src="hero.png" alt="ASD Don Bosco Rivoli — Il Centro Sportivo">
+        </div>
+        <div class="chi-siamo-text anim anim-d2">
+          <div class="section-header" style="margin-bottom: 20px;">
+            <h2 class="section-title">Chi Siamo</h2>
+          </div>
+          <h3>Lo sport è<span>un diritto per tutti</span></h3>
+          <p>L'ASD Don Bosco Rivoli è un'associazione sportiva dilettantistica profondamente radicata nel tessuto sociale di Rivoli, in provincia di Torino. Ogni giorno portiamo avanti la missione educativa e sociale di San Giovanni Bosco: lo sport come strumento di crescita umana.</p>
+          <p>Con sei discipline, centinaia di atleti e uno staff tecnico qualificato, siamo un punto di riferimento per famiglie e giovani del territorio.</p>
+          <button class="btn-primary" onclick="scrollToContatti()" style="margin-top: 12px;">Vieni a Trovarci</button>
+          <div class="stat-grid">
+            <div class="stat-item">
+              <div class="stat-num">6</div>
+              <div class="stat-label">Discipline</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-num">400+</div>
+              <div class="stat-label">Atleti</div>
+            </div>
+            <div class="stat-item" style="border-color: var(--rosso);">
+              <div class="stat-num" style="color: var(--rosso);">50+</div>
+              <div class="stat-label">Tecnici</div>
+            </div>
+            <div class="stat-item" style="border-color: var(--blu);">
+              <div class="stat-num" style="color: var(--blu); font-size: 28px;">Rivoli</div>
+              <div class="stat-label">Torino</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALORI -->
+    <section id="valori" style="background: var(--nero2); padding: 72px 40px;">
+      <div class="valori-strip anim">
+        <div class="valore-item">
+          <span class="valore-icon">⚡</span>
+          <div class="valore-title">Passione</div>
+          <div class="valore-desc">Lo sport come stile di vita e strumento di crescita personale per ogni atleta</div>
+        </div>
+        <div class="valore-item">
+          <span class="valore-icon">🤝</span>
+          <div class="valore-title">Comunità</div>
+          <div class="valore-desc">Una grande famiglia unita dai valori dello sport e dall'amore per il territorio</div>
+        </div>
+        <div class="valore-item">
+          <span class="valore-icon">🏆</span>
+          <div class="valore-title">Eccellenza</div>
+          <div class="valore-desc">Impegno quotidiano per il miglioramento tecnico, fisico e umano dei nostri atleti</div>
+        </div>
+        <div class="valore-item">
+          <span class="valore-icon">🌱</span>
+          <div class="valore-title">Crescita</div>
+          <div class="valore-desc">Formare campioni nello sport e nella vita, seguendo l'esempio di Don Bosco</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNER -->
+    <section id="partner">
+      <div class="partner-header anim">
+        <h2 class="section-title" style="text-align: center;">I Nostri Partner</h2>
+        <p>Grazie ai nostri sostenitori che rendono possibile la nostra missione sportiva nel territorio di Rivoli.</p>
+        <p class="partner-quote">«… Senza la vostra carità io avrei potuto fare poco o nulla.» — Don Bosco</p>
+      </div>
+      <div class="partner-grid anim anim-d1">
+        <div class="partner-card"><img src="partner-tecnorete.jpg" alt="Tecnorete"></div>
+        <div class="partner-card"><img src="partner-aizon.png" alt="Aizoon"></div>
+        <div class="partner-card"><img src="partner-macbun.png" alt="MacBun"></div>
+        <div class="partner-card"><img src="partener-serviziAssociati.png" alt="Servizi Associati"></div>
+        <div class="partner-card"><img src="partner-americandream.png" alt="American Dream"></div>
+        <div class="partner-card"><img src="partner-alberghina.png" alt="Alberghina Studio Ottico"></div>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section id="contatti">
+      <div class="contatti-inner">
+        <div class="contatti-left anim">
+          <h2 class="section-title">Contattaci</h2>
+          <p>Vuoi iscriverti, sapere di più su una disciplina o semplicemente passare a trovarci? Siamo qui per te.</p>
+          <div class="contatto-list">
+            <div class="contatto-item">
+              <div class="contatto-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contatto-text">
+                <strong>Indirizzo</strong>
+                Corso Susa 22/E — 10098 Rivoli (TO)
+              </div>
+            </div>
+            <div class="contatto-item">
+              <div class="contatto-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.5 16.92z"/></svg>
+              </div>
+              <div class="contatto-text">
+                <strong>Telefono</strong>
+                +39 011 956 0708
+              </div>
+            </div>
+            <div class="contatto-item">
+              <div class="contatto-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contatto-text">
+                <strong>Email</strong>
+                info@donboscorivoli.it
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contatti-right anim anim-d2">
+          <div class="contatti-social-title">Seguici sui Social</div>
+          <div class="social-btns">
+            <a href="#" target="_blank" class="social-btn">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              Facebook
+            </a>
+            <a href="#" target="_blank" class="social-btn">
+              <svg viewBox="0 0 24 24" style="fill:none;stroke:var(--oro);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              Instagram
+            </a>
+          </div>
+          <div class="contatti-info-box">
+            <p>📍 <strong>Come raggiungerci</strong><br>
+            Corso Susa 22/E, Rivoli (TO)<br>
+            Raggiungibile con i mezzi pubblici da Torino<br>
+            Parcheggio disponibile nelle vicinanze</p>
+          </div>
+          <div class="contatti-info-box">
+            <p>🕐 <strong>Segreteria</strong><br>
+            Orari su appuntamento<br>
+            Per informazioni sulle iscrizioni contattaci via WhatsApp o email</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-home -->
+
+  <!-- ══════════════════════════════════════════
+       CALCIO
+  ══════════════════════════════════════════ -->
+  <div id="page-calcio" class="page-section" style="display:none; padding-top: 70px;">
+
+    <div class="sport-hero">
+      <div class="sport-hero-bg" style="background-image: url('calcio.jpeg'); background-position: center center; background-color: #180606;"></div>
+      <div class="sport-hero-grad"></div>
+      <div class="sport-hero-top-stripe" style="background: linear-gradient(90deg, var(--rosso), #ff5555);"></div>
+      <div class="sport-hero-content">
+        <button class="sport-back-btn" onclick="showPage('home')">← Torna alla Home</button>
+        <div class="sport-hero-eyebrow" style="color: var(--rosso);">⚽ &nbsp;Sezione Sportiva</div>
+        <h1 class="sport-hero-title">Calcio</h1>
+        <p class="sport-hero-sub">Dalla Scuola Calcio alla Prima Squadra — il calcio è passione a Rivoli</p>
+      </div>
+    </div>
+
+    <div class="sp-section alt">
+      <div class="sp-inner">
+        <h2 class="sp-title" style="color: var(--rosso);">Le Nostre Squadre</h2>
+        <div class="squad-grid">
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--rosso);">01</div>
+            <div class="squad-name">Prima Squadra</div>
+            <div class="squad-desc">Il team più rappresentativo dell'ASD, impegnato nei campionati FIGC regionali piemontesi.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--rosso);">02</div>
+            <div class="squad-name">Under 17</div>
+            <div class="squad-desc">Classi 2008–2009. Primo livello agonistico strutturato, campionato provinciale.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--rosso);">03</div>
+            <div class="squad-name">Under 15</div>
+            <div class="squad-desc">Classi 2010–2011. Sviluppo tecnico-tattico e agonismo in campionato.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--rosso);">04</div>
+            <div class="squad-name">Under 13</div>
+            <div class="squad-desc">Classi 2012–2013. Prime esperienze di gioco in squadra e campionato.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--rosso);">05</div>
+            <div class="squad-name">Scuola Calcio</div>
+            <div class="squad-desc">Bambini 5–11 anni. Imparare il calcio divertendosi, con metodo FGC certificato.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--rosso);">06</div>
+            <div class="squad-name">Pulcini / Esordienti</div>
+            <div class="squad-desc">Classi 2013–2015. Il primo pallone, la prima maglia — l'inizio di tutto.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-section">
+      <div class="sp-inner">
+        <h2 class="sp-title">Informazioni Pratiche</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">📅</span>
+            <div class="info-title">Allenamenti</div>
+            <div class="info-text">Allenamenti settimanali con orari per categoria. Contattaci per il calendario della tua fascia d'età — tipicamente 2–3 sessioni a settimana.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">📍</span>
+            <div class="info-title">Campo di Gioco</div>
+            <div class="info-text">Campi sportivi di Rivoli — erba sintetica, spogliatoi e area tecnica. Una struttura pensata per l'attività sportiva a tutti i livelli.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">📋</span>
+            <div class="info-title">Iscrizioni</div>
+            <div class="info-text">Apertura iscrizioni ogni anno a settembre. Tesseramento FIGC, quota associativa e info complete disponibili in segreteria.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">👕</span>
+            <div class="info-title">Equipaggiamento</div>
+            <div class="info-text">Divisa ufficiale dell'ASD Don Bosco Rivoli fornita al momento dell'iscrizione per le categorie agonistiche.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-cta" style="background: var(--rosso);">
+      <h2>Vuoi Giocare con Noi?</h2>
+      <p>Contatta la segreteria per informazioni sulle iscrizioni. Vieni a fare una prova gratuita!</p>
+      <button class="btn-outline" onclick="showPage('home'); setTimeout(scrollToContatti, 120)">Contattaci ora</button>
+    </div>
+
+  </div><!-- /page-calcio -->
+
+  <!-- ══════════════════════════════════════════
+       JUDO
+  ══════════════════════════════════════════ -->
+  <div id="page-judo" class="page-section" style="display:none; padding-top: 70px;">
+
+    <div class="sport-hero">
+      <div class="sport-hero-bg" style="background-image: url('judo.jpg'); background-position: center center; background-color: #181400;"></div>
+      <div class="sport-hero-grad"></div>
+      <div class="sport-hero-top-stripe" style="background: linear-gradient(90deg, var(--oro), #ffe680);"></div>
+      <div class="sport-hero-content">
+        <button class="sport-back-btn" onclick="showPage('home')">← Torna alla Home</button>
+        <div class="sport-hero-eyebrow" style="color: var(--oro);">🥋 &nbsp;Sezione Sportiva</div>
+        <h1 class="sport-hero-title">Judo</h1>
+        <p class="sport-hero-sub">Disciplina, rispetto e forza interiore — valori che vanno oltre il tatami</p>
+      </div>
+    </div>
+
+    <div class="sp-section alt">
+      <div class="sp-inner">
+        <h2 class="sp-title" style="color: var(--oro);">Le Nostre Categorie</h2>
+        <div class="squad-grid">
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--oro);">🦅</div>
+            <div class="squad-name">Aquilotti</div>
+            <div class="squad-desc">4–6 anni. Primo approccio al judo attraverso il gioco e la coordinazione motoria di base.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--oro);">🦁</div>
+            <div class="squad-name">Leoni</div>
+            <div class="squad-desc">7–9 anni. Sviluppo delle basi tecniche del judo in modo divertente e strutturato.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--oro);">⭐</div>
+            <div class="squad-name">Ragazzi</div>
+            <div class="squad-desc">10–13 anni. Introduzione alle gare regionali FIJLKAM e affinamento tecnico.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--oro);">🏆</div>
+            <div class="squad-name">Junior / Senior</div>
+            <div class="squad-desc">14+ anni. Agonismo strutturato, competizioni nazionali e percorso cinture avanzato.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--oro);">🌸</div>
+            <div class="squad-name">Adulti</div>
+            <div class="squad-desc">Judo per adulti, qualsiasi livello. Condizionamento fisico e benessere psicofisico.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-section">
+      <div class="sp-inner">
+        <h2 class="sp-title">Il Judo al Don Bosco</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">🏅</span>
+            <div class="info-title">Tecnici Qualificati</div>
+            <div class="info-text">Staff tecnico FIJLKAM con anni di esperienza nell'insegnamento del judo a ogni livello — dal primo tatami al cinturone nero.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">📅</span>
+            <div class="info-title">Orari Allenamenti</div>
+            <div class="info-text">Sessioni settimanali nelle palestre a Rivoli. Contattaci per il calendario completo della tua categoria.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🎽</span>
+            <div class="info-title">Prima Prova Gratuita</div>
+            <div class="info-text">Il primo allenamento è completamente gratuito. Vieni a scoprire il tatami del Don Bosco Rivoli senza impegno.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🥊</span>
+            <div class="info-title">Gare e Tornei</div>
+            <div class="info-text">Partecipazione ai campionati regionali FIJLKAM e tornei provinciali. Esperienza agonistica in un ambiente sano e formativo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-cta" style="background: #181200; border-top: 3px solid var(--oro);">
+      <h2 style="color: var(--oro);">Inizia il Tuo Percorso</h2>
+      <p>Dal primo passo sul tatami al cinturone nero — inizia oggi la tua avventura nel judo.</p>
+      <button class="btn-primary" onclick="showPage('home'); setTimeout(scrollToContatti, 120)">Contattaci ora</button>
+    </div>
+
+  </div><!-- /page-judo -->
+
+  <!-- ══════════════════════════════════════════
+       GINNASTICA
+  ══════════════════════════════════════════ -->
+  <div id="page-ginnastica" class="page-section" style="display:none; padding-top: 70px;">
+
+    <div class="sport-hero">
+      <div class="sport-hero-bg" style="background-image: url('ginastica.jpg'); background-position: center top; background-color: #080a1a;"></div>
+      <div class="sport-hero-grad"></div>
+      <div class="sport-hero-top-stripe" style="background: linear-gradient(90deg, var(--blu), #6699ff);"></div>
+      <div class="sport-hero-content">
+        <button class="sport-back-btn" onclick="showPage('home')">← Torna alla Home</button>
+        <div class="sport-hero-eyebrow" style="color: var(--blu);">🤸 &nbsp;Sezione Sportiva</div>
+        <h1 class="sport-hero-title">Ginnastica</h1>
+        <p class="sport-hero-sub">Grazia, forza e coordinazione — la ginnastica per tutti i livelli e tutte le età</p>
+      </div>
+    </div>
+
+    <div class="sp-section alt">
+      <div class="sp-inner">
+        <h2 class="sp-title" style="color: var(--blu);">Le Nostre Discipline</h2>
+        <div class="squad-grid">
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--blu);">🤸</div>
+            <div class="squad-name">Artistica</div>
+            <div class="squad-desc">Corpo libero, volteggio, parallele e sbarra. Tecnica, forza e coordinazione per bambini e ragazzi.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--blu);">🎀</div>
+            <div class="squad-name">Ritmica</div>
+            <div class="squad-desc">Nastri, cerchi, palle, clave e corda. Eleganza e ritmo per tutte le fasce d'età.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--blu);">💪</div>
+            <div class="squad-name">Generale</div>
+            <div class="squad-desc">Ginnastica fitness e benessere per adulti. Tonificazione, flessibilità e benessere psicofisico.</div>
+          </div>
+          <div class="squad-card">
+            <div class="squad-num" style="color: var(--blu);">⭐</div>
+            <div class="squad-name">Propedeutica</div>
+            <div class="squad-desc">Dai 3 anni in su. Motricità di base, equilibrio e coordinazione attraverso il gioco.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-section">
+      <div class="sp-inner">
+        <h2 class="sp-title">La Nostra Ginnastica</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">🏟️</span>
+            <div class="info-title">Palestre Attrezzate</div>
+            <div class="info-text">Strutture dotate di tappeti, attrezzi omologati FGI e spazi dedicati per ogni disciplina ginnica a Rivoli.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">👩‍🏫</span>
+            <div class="info-title">Istruttori FGI</div>
+            <div class="info-text">Tecnici qualificati Federazione Ginnastica d'Italia con esperienza pluriennale nell'insegnamento a bambini e adulti.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🏆</span>
+            <div class="info-title">Gare e Saggi</div>
+            <div class="info-text">Campionati regionali FGI e saggi di fine anno per celebrare il lavoro svolto e condividere le emozioni con le famiglie.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🌟</span>
+            <div class="info-title">Prima Lezione</div>
+            <div class="info-text">Vieni a provare gratuitamente. Scopri quale disciplina fa per te prima di iscriverti ufficialmente.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp-cta" style="background: #06081a; border-top: 3px solid var(--blu);">
+      <h2 style="color: var(--blu);">Inizia a Muoverti!</h2>
+      <p>Contattaci per sapere quali corsi sono disponibili per la tua età e quando iniziano le lezioni.</p>
+      <button class="btn-primary" style="background: var(--blu);" onclick="showPage('home'); setTimeout(scrollToContatti, 120)">Contattaci ora</button>
+    </div>
+
+  </div><!-- /page-ginnastica -->
+
+
+  <!-- BASKET -->
+  <div id="page-basket" class="page-section" style="display:none; padding-top: 70px;">
+    <div class="sport-hero">
+      <div class="sport-hero-bg" style="background-image: url('basket.jpg'); background-position: center center; background-color: #1a0800;"></div>
+      <div class="sport-hero-grad"></div>
+      <div class="sport-hero-top-stripe" style="background: linear-gradient(90deg, #ff7700, #ffaa55);"></div>
+      <div class="sport-hero-content">
+        <button class="sport-back-btn" onclick="showPage('home')">← Torna alla Home</button>
+        <div class="sport-hero-eyebrow" style="color:#ff7700;">🏀 &nbsp;Sezione Sportiva</div>
+        <h1 class="sport-hero-title">Basket</h1>
+        <p class="sport-hero-sub">Dal Mini Basket alle squadre competitive — la pallacanestro è di casa a Rivoli</p>
+      </div>
+    </div>
+    <div class="sp-section alt">
+      <div class="sp-inner">
+        <h2 class="sp-title" style="color:#ff7700;">Le Nostre Squadre</h2>
+        <div class="squad-grid">
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#ff7700;">🏀</div>
+            <div class="squad-name">Mini Basket</div>
+            <div class="squad-desc">6–9 anni. Primo approccio alla pallacanestro attraverso il gioco e la coordinazione.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#ff7700;">01</div>
+            <div class="squad-name">Under 13</div>
+            <div class="squad-desc">Classi 2012–2013. Introduzione all'agonismo e ai fondamentali tecnici.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#ff7700;">02</div>
+            <div class="squad-name">Under 15</div>
+            <div class="squad-desc">Classi 2010–2011. Sviluppo tattico e prime esperienze nei campionati FIP.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#ff7700;">03</div>
+            <div class="squad-name">Under 17</div>
+            <div class="squad-desc">Classi 2008–2009. Agonismo strutturato nel campionato provinciale FIP.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sp-section">
+      <div class="sp-inner">
+        <h2 class="sp-title">Informazioni Pratiche</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">🏟️</span>
+            <div class="info-title">Palazzetto</div>
+            <div class="info-text">Gli allenamenti si svolgono nel palazzetto dello sport di Rivoli, con parquet e canestri regolamentari FIP.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">📅</span>
+            <div class="info-title">Allenamenti</div>
+            <div class="info-text">Sessioni settimanali con orari per categoria. Contattaci per il calendario aggiornato della tua fascia d'età.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">📋</span>
+            <div class="info-title">Iscrizioni</div>
+            <div class="info-text">Apertura iscrizioni ogni anno a settembre. Tesseramento FIP, quota associativa e informazioni in segreteria.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">👕</span>
+            <div class="info-title">Equipaggiamento</div>
+            <div class="info-text">Divisa ufficiale ASD Don Bosco Rivoli — il rosso e il bianco del nostro basket, come nella tradizione.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sp-cta" style="background:#ff7700;">
+      <h2 style="color:white;">Pronto a Giocare?</h2>
+      <p style="color:rgba(255,255,255,0.8);">Contatta la segreteria per le iscrizioni. Prima prova gratuita per tutti!</p>
+      <button class="btn-outline" onclick="showPage('home'); setTimeout(scrollToContatti, 120)">Contattaci ora</button>
+    </div>
+  </div>
+
+  <!-- DANZA -->
+  <div id="page-danza" class="page-section" style="display:none; padding-top: 70px;">
+    <div class="sport-hero">
+      <div class="sport-hero-bg" style="background-image: url('danza.jpg'); background-position: center center; background-color: #180010;"></div>
+      <div class="sport-hero-grad"></div>
+      <div class="sport-hero-top-stripe" style="background: linear-gradient(90deg, #cc3399, #ff88cc);"></div>
+      <div class="sport-hero-content">
+        <button class="sport-back-btn" onclick="showPage('home')">← Torna alla Home</button>
+        <div class="sport-hero-eyebrow" style="color:#cc3399;">💃 &nbsp;Sezione Sportiva</div>
+        <h1 class="sport-hero-title">Danza</h1>
+        <p class="sport-hero-sub">Eleganza, ritmo ed espressione — la danza per tutte le età e tutti i livelli</p>
+      </div>
+    </div>
+    <div class="sp-section alt">
+      <div class="sp-inner">
+        <h2 class="sp-title" style="color:#cc3399;">I Nostri Corsi</h2>
+        <div class="squad-grid">
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#cc3399;">🌸</div>
+            <div class="squad-name">Baby Dance</div>
+            <div class="squad-desc">3–5 anni. Primo approccio al ritmo e al movimento attraverso il gioco e la musica.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#cc3399;">🩰</div>
+            <div class="squad-name">Danza Classica</div>
+            <div class="squad-desc">Tecnica accademica, postura e grazia. Dall'età scolare agli adulti, tutti i livelli.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#cc3399;">🎵</div>
+            <div class="squad-name">Jazz / Moderna</div>
+            <div class="squad-desc">Espressività e dinamismo. Tecnica jazz e danza moderna per ragazzi e giovani adulti.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#cc3399;">🔥</div>
+            <div class="squad-name">Hip Hop</div>
+            <div class="squad-desc">Ritmo, stile e creatività. Street dance per bambini, ragazzi e adulti a tutti i livelli.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sp-section">
+      <div class="sp-inner">
+        <h2 class="sp-title">La Nostra Danza</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">👩‍🏫</span>
+            <div class="info-title">Insegnanti Qualificate</div>
+            <div class="info-text">Docenti diplomate con esperienza pluriennale nell'insegnamento della danza a bambini, ragazzi e adulti.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">📅</span>
+            <div class="info-title">Orari Lezioni</div>
+            <div class="info-text">Lezioni settimanali nelle sale attrezzate di Rivoli. Contattaci per gli orari della tua disciplina e fascia d'età.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🌟</span>
+            <div class="info-title">Saggio Fine Anno</div>
+            <div class="info-text">Ogni anno un grande saggio per mostrare il lavoro svolto — un momento di festa per allievi e famiglie.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">💫</span>
+            <div class="info-title">Prima Lezione</div>
+            <div class="info-text">Vieni a provare gratuitamente qualsiasi corso prima di iscriverti. Scopri la disciplina che fa per te!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sp-cta" style="background:#2a0018; border-top:3px solid #cc3399;">
+      <h2 style="color:#cc3399;">Inizia a Danzare!</h2>
+      <p style="color:rgba(255,255,255,0.55);">Contattaci per conoscere gli orari dei corsi e venire a provare gratuitamente.</p>
+      <button class="btn-primary" onclick="showPage('home'); setTimeout(scrollToContatti, 120)">Contattaci ora</button>
+    </div>
+  </div>
+
+  <!-- VOLLEY -->
+  <div id="page-volley" class="page-section" style="display:none; padding-top: 70px;">
+    <div class="sport-hero">
+      <div class="sport-hero-bg" style="background-image: url('volley.jpg'); background-position: center center; background-color: #001a2a;"></div>
+      <div class="sport-hero-grad"></div>
+      <div class="sport-hero-top-stripe" style="background: linear-gradient(90deg, #0088cc, #55ccff);"></div>
+      <div class="sport-hero-content">
+        <button class="sport-back-btn" onclick="showPage('home')">← Torna alla Home</button>
+        <div class="sport-hero-eyebrow" style="color:#0088cc;">🏐 &nbsp;Sezione Sportiva</div>
+        <h1 class="sport-hero-title">Volley</h1>
+        <p class="sport-hero-sub">Dal Mini Volley alla squadra senior — la pallavolo a Rivoli</p>
+      </div>
+    </div>
+    <div class="sp-section alt">
+      <div class="sp-inner">
+        <h2 class="sp-title" style="color:#0088cc;">Le Nostre Squadre</h2>
+        <div class="squad-grid">
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#0088cc;">🏐</div>
+            <div class="squad-name">Mini Volley</div>
+            <div class="squad-desc">6–9 anni. Avvicinarsi alla pallavolo con attività ludiche adatte ai più piccoli.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#0088cc;">01</div>
+            <div class="squad-name">Under 12</div>
+            <div class="squad-desc">Classi 2013–2014. Apprendimento dei fondamentali e prime gare in un contesto formativo.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#0088cc;">02</div>
+            <div class="squad-name">Under 14</div>
+            <div class="squad-desc">Classi 2011–2012. Consolidamento tecnico e campionato provinciale FIPAV.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#0088cc;">03</div>
+            <div class="squad-name">Under 16 / 18</div>
+            <div class="squad-desc">Classi 2007–2010. Percorso agonistico completo in campionato regionale FIPAV.</div>
+          </div>
+          <div class="squad-card" >
+            <div class="squad-num" style="color:#0088cc;">04</div>
+            <div class="squad-name">Squadra Senior</div>
+            <div class="squad-desc">La squadra più rappresentativa del Don Bosco Rivoli nei campionati regionali FIPAV.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sp-section">
+      <div class="sp-inner">
+        <h2 class="sp-title">Informazioni Pratiche</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="info-icon">🏟️</span>
+            <div class="info-title">Palazzetto</div>
+            <div class="info-text">Allenamenti nel palazzetto sportivo di Rivoli, con campi regolamentari FIPAV e spogliatoi attrezzati.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">📅</span>
+            <div class="info-title">Allenamenti</div>
+            <div class="info-text">Sessioni settimanali con orari per categoria. Contattaci per il calendario aggiornato.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">📋</span>
+            <div class="info-title">Iscrizioni</div>
+            <div class="info-text">Apertura iscrizioni ogni anno a settembre. Tesseramento FIPAV, quota associativa e info in segreteria.</div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">🌟</span>
+            <div class="info-title">Prima Prova</div>
+            <div class="info-text">Vieni a provare gratuitamente. Scopri il campo del Don Bosco Rivoli senza nessun impegno!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sp-cta" style="background:#001a2e; border-top:3px solid #0088cc;">
+      <h2 style="color:#0088cc;">Vieni in Campo!</h2>
+      <p style="color:rgba(255,255,255,0.55);">Contatta la segreteria per le iscrizioni. Prima prova gratuita per tutti!</p>
+      <button class="btn-primary" style="background:#0088cc;" onclick="showPage('home'); setTimeout(scrollToContatti, 120)">Contattaci ora</button>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo-sito.png" alt="ASD Don Bosco Rivoli">
+      </div>
+      <div class="footer-copy">
+        © 2025 ASD Don Bosco Rivoli — Tutti i diritti riservati<br>
+        Via Stupinigi, 1, 10098 Rivoli TO
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ─── PAGE ROUTING ─── */
+    function showPage(name) {
+      document.querySelectorAll('.page-section').forEach(p => p.style.display = 'none');
+      const target = document.getElementById('page-' + name);
+      if (target) target.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      // re-trigger animations for newly visible elements
+      setTimeout(() => {
+        document.querySelectorAll('.anim').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.92) el.classList.add('visible');
+        });
+      }, 60);
+    }
+
+    function scrollToContatti() {
+      const el = document.getElementById('contatti');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    /* ─── HAMBURGER ─── */
+    function toggleDrawer() {
+      const d = document.getElementById('drawer');
+      d.style.display = d.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+
+    /* ─── NAVBAR OPACITY ON SCROLL ─── */
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('mainNav');
+      if (window.scrollY > 60) {
+        nav.style.background = 'rgba(7,9,15,0.98)';
+        nav.style.borderBottomColor = 'rgba(246,184,16,0.2)';
+      } else {
+        nav.style.background = 'rgba(7,9,15,0.93)';
+        nav.style.borderBottomColor = 'rgba(246,184,16,0.12)';
+      }
+    });
+  </script>
+
+</body>
+</html>
